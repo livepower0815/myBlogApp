@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dreamer 夢想家Blog</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- 圖片來源：http://www.gratisography.com/#objects -->
+    <style>
+        body{
+            background-color: rgb(225, 240, 252);
+        }
+        
+        .breadcrumb {
+            background-color: transparent;
+        }
+
+        /* typography design */
+
+        .text-primary {
+            color: #243894 !important;
+        }
+
+        .post {
+            line-height: 1.8;
+        }
+        .shadow{
+            transition: all 0.3s;
+        }
+        .shadow:hover {
+            box-shadow:0px 0px 18px 5px #b3b2b2; 
+        }
+        .navbar{
+            position:sticky;
+            top:0;
+            z-index: 3;
+        }
+    </style>
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1a798a;">
+    <a class="navbar-brand" href="/">
+        <i class="fas fa-dove" aria-hidden="true"></i>
+        夢想家Blog
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="font-size: 20px">
+        <% if (!uid) {%>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/auth/login">
+                <i class="fas fa-sign-in-alt"></i>  登入
+                <span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-item nav-link" href="/auth/signup">
+                <i class="fas fa-user-plus"></i>  註冊
+                <span class="sr-only">(current)</span>
+            </a>
+            
+        </div>
+        <% }else{ %>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="#">歡迎 <%- nickname %>
+                <span class="sr-only">(current)</span>
+            </a>
+            <a class="nav-item nav-link" href="/auth/logout"> 登出
+                <span class="sr-only">(current)</span>
+            </a>
+            <% if(uid == '2jpDdYmtTLaU5PDC1B6riTh3kE12'){ %>
+            <a class="nav-item nav-link" href="/dashboard/archives">後台管理(dashboard)
+                <span class="sr-only">(current)</span>
+            </a>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+
+</nav>
+<div class="container">
+    <%- content %>
+</div>
+<footer class="bg-dark text-muted py-5">
+    <div class="container">
+        <ul class="list-unstyled d-flex justify-content-between">
+            <li class="text-info" style="font-size: 20px">© Copright 2018 夢想家Blog</li>
+            <li class="ml-auto">
+                <a class="text-info mr-1" href="#">
+                    <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+                </a>
+                <a class="text-info mr-1" href="#">
+                    <i class="fab fa-facebook-square fa-lg" aria-hidden="true"></i>
+                </a>
+                <a href="" class="text-info">
+                    <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</html>

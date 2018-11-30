@@ -1,0 +1,91 @@
+<% extend('./layout/layout') %>
+
+<div class="hex-blog">
+  <nav class="breadcrumb pl-0">
+    <a class="breadcrumb-item text-primary" href="/">Home</a>
+    <a class="breadcrumb-item text-primary" href="#">
+      <% for (let item in categories) { %>
+      <% if(item === article.category) { %>
+      <%= categories[item].name %>
+      <% } %>
+      <% } %>
+    </a>
+    <span class="breadcrumb-item active">
+      <%- article.title %></span>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <!-- artical header -->
+      <h1 class="text-primary">
+        <%- article.title %>
+      </h1>
+      <div class="d-flex flex-row text-secondary small">
+        <div class="p-2"><i class="fa fa-user-o" aria-hidden="true"></i> 卡斯伯</div>
+        <div class="p-2">
+          <%- moment(article.updateTime * 1000).format('YYYY/MM/DD') %>
+        </div>
+        <div class="p-2"><i class="fa fa-tag" aria-hidden="true"></i>
+          <a href="" class="text-info">
+            <% for (let item in categories) { %>
+            <% if(item === article.category) { %>
+            <%= categories[item].name %>
+            <% } %>
+            <% } %>
+          </a>
+        </div>
+      </div>
+      <article class="text-dark post mb-4">
+        <%- article.content %>
+      </article>
+      <!-- 留言 -->
+      
+      <div class="card mb-4" style="background: rgb(200, 218, 221);">
+        <div class="card-header fwb">
+          留言回覆
+        </div>
+        <div class="card-body">
+          <% if(uid) { %>
+          <div class="media mb-5">
+            <img class="mr-3 img64" src="https://randomuser.me/api/portraits/women/60.jpg" alt="Generic placeholder image">
+            <div class="media-body">
+
+              <h5 class="mt-0">
+                <%- nickname %>
+              </h5>
+              <div class="form-group">
+                <textarea class="form-control postData" rows="3" data-iddata="<%- article.id %>" data-nickname="<%- nickname %>"></textarea>
+                <a href="#" class="btn btn-light btn-block commentBtn">comment</a>
+              </div>
+            </div>
+          </div>
+          <% } %>
+          <% for(let com in article.comments){ %>
+          <div class="media mb-5">
+            <img class="mr-2 img64" src="https://randomuser.me/api/portraits/women/<%- Math.ceil( Math.random() * 60) %>.jpg" alt="Generic placeholder image">
+            <div class="media-body">
+              <h5 class="mt-0 text-primary"><%- article.comments[com].nickname %></h5>
+              <%- article.comments[com].comment %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var comment = document.querySelector('.commentBtn');
+  var postData = document.querySelector('.postData');
+  comment.addEventListener('click', (e) => {
+    e.preventDefault();
+    let user = postData.dataset.nickname;
+    let idData = postData.dataset.iddata;
+    let url = '/comment?nickname=' + user + '&id=' + idData + '&comment=' + postData.value;
+    window.location = url;
+    
+  });
+</script>

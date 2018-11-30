@@ -68,9 +68,12 @@ router.get('/comment',function(req,res){
   const nickname =  req.query.nickname;
   const id =  req.query.id;
   const comment =  req.query.comment;
+  if(comment == ''){
+    res.redirect('/post/' + id);
+  }else {
   firebaseDB.ref('/articles/' + id + '/comments').push({nickname,comment}).then((snapshot)=>{
     res.redirect('/post/' + id);
-  })
+  })}
   
   
 });

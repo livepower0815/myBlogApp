@@ -44,6 +44,9 @@
           留言回覆
         </div>
         <div class="card-body">
+          <% if(!uid) { %>
+          <p><a href="/auth/login">登入後即可使用留言功能</a></p>
+          <% } %>
           <% if(uid) { %>
           <div class="media mb-5">
             <img class="mr-3 img64" src="https://randomuser.me/api/portraits/women/60.jpg" alt="Generic placeholder image">
